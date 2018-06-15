@@ -1,0 +1,41 @@
+function [ ] = extractGrapheSkel(dataFile)
+
+frameNum = 1;
+
+fprintf('visualize skeleton!!\n');
+
+fprintf(' skeleton data: %s\n', dataFile);
+fprintf(' frame number:  %d\n\n', frameNum);
+
+if ~exist(dataFile,'file'),
+    error('FILE DOES NOT EXIST! CHECK FILE PATH AND FILE NAME!'); 
+else
+    figureTitle = strcat(dataFile, ' (frame:', int2str(frameNum),')');
+    readSkel(dataFile,frameNum, figureTitle);
+    fprintf('ALL DONE.\n');
+end
+
+nStart  = [1 2 2 3 3 3 3 4 5 6 7 8 8 9 10 11];
+nEnd    = [2 4 6 4 6 8 10 5 12 7 13 9 10 14 11 15];
+sName = {'HEAD' 'NECK' 'TORSO' 'LEFT_SHOULDER' 'LEFT_ELBOW' 'RIGHT_SHOULDER' 'RIGHT_ELBOW' 'LEFT_HIP' 'LEFT_KNEE' 'RIGHT_HIP' 'RIGHT_KNEE' 'LEFT_HAND' 'RIGHT_HAND' 'LEFT_FOOT' 'RIGHT_FOOT'}';
+gTarget = graph(nStart, nEnd);
+gTarget.Nodes.Name = sName;
+
+% plot(gTarget);
+disp(gTarget.Edges);
+
+nDataX = {1.156 2 3}';
+nDataY = {1 2 3}';
+nDataZ = {1 2 3}';
+nStart2  = [1 2 2];
+nEnd2    = [2 3 1];
+
+tNode = table(nDataX, nDataY, nDataZ, 'VariableNames',{'x' 'y' 'z'});
+tEdge = table([nStart2' nEnd2'], 'VariableNames', {'EndNodes'});
+G1 = graph(tEdge, tNode);
+disp(G1.Nodes);
+
+save('G1.mat', 'G1');
+
+end
+

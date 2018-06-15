@@ -1,0 +1,19 @@
+Stock frame from the specific skeleton data in MAT files and shows in Matlab 3D figure.
+
+<Requires>
+1) Matlab (tested on R2010a and above)
+
+<Usage>
+1) launch Matlab
+2) run by "stockSkel('ACTION_NAME', 'SKELETON_FILE_NAME1', 'SKELETON_FILE_NAME2'...)"
+	- replace ACTION_NAME with skeleton data action   
+	- replace SKELETON_FILE_NAME with skeleton data file
+3) file (.mat) will socked in Actions/ACTION_NAME/VIDEO_NUM
+5) run by "showGraph(G)" to show your graph (G) in 3D
+
+----------------------------------------------------------------------------------------
+Yongda LIN
+
+Part of this code is released as part of the Human Activity Detection project at Cornell University.
+Refer to the website for more details about the project.
+(http://pr.cs.cornell.edu/humanactivities/)
